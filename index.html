@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thais Abreu Da Silva - Terapias Holísticas</title>
+  <style>
+    :root {
+      --cor-primaria: #4a8b7e;
+      --cor-secundaria: #f8f1e5;
+      --cor-texto: #333333;
+      --cor-destaque: #e6a756;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+      color: var(--cor-texto);
+      line-height: 1.6;
+      background-color: var(--cor-secundaria);
+    }
+    
+    /* Header */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo {
+      height: 60px;
+      margin-right: 15px;
+    }
+    
+    .logo-text h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: var(--cor-primaria);
+    }
+    
+    .logo-text p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--cor-texto);
+    }
+    
+    /* Menu */
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav li {
+      margin-left: 30px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--cor-texto);
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--cor-destaque);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover:after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1506126613408-eca07ce68773');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 150px 20px 100px;
+      margin-top: 90px;
+    }
+    
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--cor-destaque);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #d8953a;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--cor-primaria);
+    }
+    
+    .section-title h2 {
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      background-color: var(--cor-destaque);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* About Section */
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    
+    .about-text {
+      flex: 1;
+    }
+    
+    .about-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .service-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .service-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .service-content {
+      padding: 20px;
+    }
+    
+    .service-content h3 {
+      color: var(--cor-primaria);
+      margin-top: 0;
+    }
+    
+    /* Contact Section */
+    .contact-container {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .contact-info {
+      flex: 1;
+    }
+    
+    .contact-form {
+      flex: 1;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+    }
+    
+    .form-group textarea {
+      height: 120px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--cor-primaria);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .social-links {
+      margin: 20px 0;
+    }
+    
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+    
+    .social-links a:hover {
+      color: var(--cor-destaque);
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 15px;
+      }
+      
+      nav li {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      
+      .about-content,
+      .contact-container {
+        flex-direction: column;
+      }
+      
+      .hero {
+        padding: 120px 20px 80px;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="logo.png" alt="Logo Thais Abreu" class="logo">
+        <div class="logo-text">
+          <h1>Thais Abreu</h1>
+          <p>Terapias Holísticas</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h2>Bem-vindo à Jornada do Autoconhecimento</h2>
+    <p>Terapias holísticas e quânticas para equilibrar corpo, mente e espírito, promovendo cura e transformação em todos os níveis.</p>
+    <a href="#contato" class="btn">Agende sua sessão</a>
+  </section>
+
+  <!-- About Section -->
+  <section class="container" id="sobre">
+    <div class="section-title">
+      <h2>Sobre Mim</h2>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <p>Terapeuta holística com formação em Marketing e estudante de Terapias Integrativas e Complementares.</p>
+        <p>Atuo com diversas técnicas terapêuticas que promovem o bem-estar físico, emocional e mental, tratando a raiz dos problemas e proporcionando resultados imediatos. Meu objetivo é conduzir cada cliente em um processo de autoconhecimento e evolução.</p>
+        <h3>Técnicas Utilizadas:</h3>
+        <p><strong>Terapia Holística:</strong> considera o ser humano de forma integral, interligando aspectos físicos, emocionais, mentais e espirituais. Ao tratar a causa do problema, promove equilíbrio e harmonia.</p>
+        <p><strong>Terapia Quântica:</strong> baseada nos princípios da física quântica, essa abordagem conecta mente e matéria, demonstrando como a consciência pode influenciar a energia para promover a cura.</p>
+        <p><strong>Terapia Multidimensional:</strong> trabalha em diferentes níveis da consciência, abrangendo aspectos do passado, presente e espiritualidade. Auxilia no desbloqueio de traumas e no reequilíbrio energético, promovendo transformações profundas.</p>
+      </div>
+      <div class="about-image">
+        <img src="ThaisAbreu.jpeg" alt="Thais Abreu">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="container" id="servicos">
+    <div class="section-title">
+      <h2>Serviços</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-image">
+          <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597" alt="Terapia Quântica">
+        </div>
+        <div class="service-content">
+          <h3>Terapia Quântica</h3>
+          <p>Utilização dos princípios da física quântica para promover cura e equilíbrio energético, trabalhando na raiz dos desequilíbrios.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" alt="Reiki Multidimensional">
+        </div>
+        <div class="service-content">
+          <h3>Reiki Multidimensional</h3>
+          <p>Técnica de cura energética que atua em múltiplas dimensões, promovendo harmonização física, emocional e espiritual.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Leitura Energética">
+        </div>
+        <div class="service-content">
+          <h3>Leitura Energética</h3>
+          <p>Diagnóstico preciso dos campos energéticos para identificar bloqueios e desequilíbrios que afetam o bem-estar.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="https://images.unsplash.com/photo-1517842645767-c639042777db" alt="Reprogramação Energética">
+        </div>
+        <div class="service-content">
+          <h3>Limpeza e Reprogramação Energética</h3>
+          <p>Processo de limpeza de energias negativas e reprogramação de padrões mentais e emocionais limitantes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="container" id="contato">
+    <div class="section-title">
+      <h2>Agende sua Sessão</h2>
+    </div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Informações de Contato</h3>
+        <p><i class="fas fa-phone"></i> <a href="https://wa.me/5548991035154" target="_blank">(48) 991035154</a></p>
+        <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/tekhnaquantumterapias" target="_blank">@tekhnaquantumterapias</a></p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:tekhnaquantum@gmail.com">tekhnaquantum@gmail.com</a></p>
+        
+        <h3>Horário de Atendimento</h3>
+        <p>Segunda a Sexta: 9h às 18h</p>
+        <p>Sábado: 9h às 13h</p>
+      </div>
+      <div class="contact-form">
+        <h3>Envie uma Mensagem</h3>
+        <form>
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone">
+          </div>
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" required></textarea>
+          </div>
+          <button type="submit" class="btn">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="logo-container">
+        <img src="logo.png" alt="Logo Thais Abreu" class="logo">
+        <div class="logo-text">
+          <h1>Thais Abreu</h1>
+          <p>Terapias Holísticas</p>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://instagram.com/tekhnaquantumterapias" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5551933005845" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:tekhnaquantum@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p>&copy; 2025 Thais Abreu Da Silva. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
