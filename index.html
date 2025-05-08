@@ -96,16 +96,37 @@
         width: 100%;
       }
 
-      /* Hero Section */
       .hero {
-        background: url("banner.jpg");
-        background-size: cover;
-        background-position: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+          url("banner.png");
+        background-size: cover; /* Cobrir todo o espaço sem distorcer */
+        background-position: center; /* Centraliza a imagem */
+        background-repeat: no-repeat; /* Evita repetição */
         color: white;
         text-align: center;
         padding: 150px 20px 100px;
         margin-top: 90px;
-        height: 300px;
+        height: 300px; /* Altura padrão para desktop */
+      }
+
+      /* Ajustes para dispositivos móveis (telas ≤ 768px) */
+      @media (max-width: 768px) {
+        .hero {
+          background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+            url("banner_mobile.jpg"); /* Imagem específica para mobile */
+          background-size: cover;
+          background-position: top center; /* Foca no topo para evitar cortes */
+          height: 250px; /* Altura reduzida para mobile */
+          padding: 80px 20px 60px; /* Padding menor para melhor proporção */
+        }
+      }
+
+      /* Ajuste extra para telas muito pequenas (ex: smartphones em modo retrato) */
+      @media (max-width: 480px) {
+        .hero {
+          height: 200px; /* Altura ainda menor */
+          padding: 60px 15px 40px;
+        }
       }
 
       .hero h2 {
@@ -406,24 +427,6 @@
             chamada a convidar você a fazer o mesmo. Junte-se a mim nessa busca
             pelo seu próprio caminho de transformação. Juntos, podemos enfrentar
             desafios e criar a vida que desejamos.
-          </p>
-          <h3>Técnicas Utilizadas:</h3>
-          <p>
-            <strong>Terapia Holística:</strong> considera o ser humano de forma
-            integral, interligando aspectos físicos, emocionais, mentais e
-            espirituais. Ao tratar a causa do problema, promove equilíbrio e
-            harmonia.
-          </p>
-          <p>
-            <strong>Terapia Quântica:</strong> baseada nos princípios da física
-            quântica, essa abordagem conecta mente e matéria, demonstrando como
-            a consciência pode influenciar a energia para promover a cura.
-          </p>
-          <p>
-            <strong>Terapia Multidimensional:</strong> trabalha em diferentes
-            níveis da consciência, abrangendo aspectos do passado, presente e
-            espiritualidade. Auxilia no desbloqueio de traumas e no reequilíbrio
-            energético, promovendo transformações profundas.
           </p>
         </div>
         <div class="about-image">
