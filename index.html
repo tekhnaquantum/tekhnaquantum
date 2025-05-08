@@ -1,491 +1,922 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thais Abreu Da Silva - Terapias Holísticas</title>
-  <style>
-    :root {
-      --cor-primaria: #4a8b7e;
-      --cor-secundaria: #f8f1e5;
-      --cor-texto: #333333;
-      --cor-destaque: #e6a756;
-    }
-    
-    body {
-      margin: 0;
-      font-family: 'Montserrat', 'Segoe UI', sans-serif;
-      color: var(--cor-texto);
-      line-height: 1.6;
-      background-color: var(--cor-secundaria);
-    }
-    
-    /* Header */
-    header {
-      background-color: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
-    
-    .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-    }
-    
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-    
-    .logo {
-      height: 60px;
-      margin-right: 15px;
-    }
-    
-    .logo-text h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      color: var(--cor-primaria);
-    }
-    
-    .logo-text p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--cor-texto);
-    }
-    
-    /* Menu */
-    nav ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    
-    nav li {
-      margin-left: 30px;
-    }
-    
-    nav a {
-      text-decoration: none;
-      color: var(--cor-texto);
-      font-weight: 500;
-      position: relative;
-      padding: 5px 0;
-    }
-    
-    nav a:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--cor-destaque);
-      transition: width 0.3s;
-    }
-    
-    nav a:hover:after {
-      width: 100%;
-    }
-    
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1506126613408-eca07ce68773');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      text-align: center;
-      padding: 150px 20px 100px;
-      margin-top: 90px;
-    }
-    
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-    
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-    }
-    
-    .btn {
-      display: inline-block;
-      background-color: var(--cor-destaque);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-    
-    .btn:hover {
-      background-color: #d8953a;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    /* Main Content */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
-    
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-      color: var(--cor-primaria);
-    }
-    
-    .section-title h2 {
-      font-size: 2rem;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .section-title h2:after {
-      content: '';
-      position: absolute;
-      width: 50px;
-      height: 3px;
-      background-color: var(--cor-destaque);
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    /* About Section */
-    .about-content {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-    
-    .about-text {
-      flex: 1;
-    }
-    
-    .about-image {
-      flex: 1;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .about-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    
-    /* Services Section */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    
-    .service-card {
-      background-color: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-10px);
-    }
-    
-    .service-image {
-      height: 200px;
-      overflow: hidden;
-    }
-    
-    .service-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .service-content {
-      padding: 20px;
-    }
-    
-    .service-content h3 {
-      color: var(--cor-primaria);
-      margin-top: 0;
-    }
-    
-    /* Contact Section */
-    .contact-container {
-      display: flex;
-      gap: 40px;
-    }
-    
-    .contact-info {
-      flex: 1;
-    }
-    
-    .contact-form {
-      flex: 1;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .form-group {
-      margin-bottom: 20px;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-    
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-family: inherit;
-    }
-    
-    .form-group textarea {
-      height: 120px;
-    }
-    
-    /* Footer */
-    footer {
-      background-color: var(--cor-primaria);
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-    }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .social-links {
-      margin: 20px 0;
-    }
-    
-    .social-links a {
-      color: white;
-      font-size: 1.5rem;
-      margin: 0 10px;
-      transition: color 0.3s;
-    }
-    
-    .social-links a:hover {
-      color: var(--cor-destaque);
-    }
-    
-    @media (max-width: 768px) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thais Abreu Da Silva - Terapias Holísticas</title>
+    <style>
+      :root {
+        --cor-primaria: #4a8b7e;
+        --cor-secundaria: #f8f1e5;
+        --cor-texto: #333333;
+        --cor-destaque: #e6a756;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Montserrat", "Segoe UI", sans-serif;
+        color: var(--cor-texto);
+        line-height: 1.6;
+        background-color: var(--cor-secundaria);
+      }
+
+      /* Header */
+      header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
       .header-container {
-        flex-direction: column;
-        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
       }
-      
-      nav ul {
-        margin-top: 15px;
+
+      .logo-container {
+        display: flex;
+        align-items: center;
       }
-      
-      nav li {
-        margin-left: 15px;
+
+      .logo {
+        height: 60px;
         margin-right: 15px;
       }
-      
-      .about-content,
-      .contact-container {
-        flex-direction: column;
+
+      .logo-text h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--cor-primaria);
       }
-      
+
+      .logo-text p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--cor-texto);
+      }
+
+      /* Menu */
+      nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav li {
+        margin-left: 30px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--cor-texto);
+        font-weight: 500;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      nav a:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--cor-destaque);
+        transition: width 0.3s;
+      }
+
+      nav a:hover:after {
+        width: 100%;
+      }
+
+      /* Hero Section */
       .hero {
-        padding: 120px 20px 80px;
+        background: url("banner.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 150px 20px 100px;
+        margin-top: 90px;
+        height: 300px;
       }
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <div class="header-container">
-      <div class="logo-container">
-        <img src="logo.png" alt="Logo Thais Abreu" class="logo">
-        <div class="logo-text">
-          <h1>Thais Abreu</h1>
-          <p>Terapias Holísticas</p>
-        </div>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#home">Início</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <h2>Bem-vindo à Jornada do Autoconhecimento</h2>
-    <p>Terapias holísticas e quânticas para equilibrar corpo, mente e espírito, promovendo cura e transformação em todos os níveis.</p>
-    <a href="#contato" class="btn">Agende sua sessão</a>
-  </section>
+      .hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
 
-  <!-- About Section -->
-  <section class="container" id="sobre">
-    <div class="section-title">
-      <h2>Sobre Mim</h2>
-    </div>
-    <div class="about-content">
-      <div class="about-text">
-        <p>Terapeuta holística com formação em Marketing e estudante de Terapias Integrativas e Complementares.</p>
-        <p>Atuo com diversas técnicas terapêuticas que promovem o bem-estar físico, emocional e mental, tratando a raiz dos problemas e proporcionando resultados imediatos. Meu objetivo é conduzir cada cliente em um processo de autoconhecimento e evolução.</p>
-        <p>Minha Jornada de Evolução: Um Novo Começo
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+      }
 
-Meu processo de evolução começou em um momento decisivo da minha vida, quando decidi romper com um ciclo perturbado que me mantinha estagnada. Esse rompimento foi mais do que uma simples mudança; foi um convite à reflexão profunda. Eu percebi que era necessário adotar transformações significativas e permanentes para poder me reinventar.
+      .btn {
+        display: inline-block;
+        background-color: var(--cor-destaque);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
 
-Impulsionada por uma intensa necessidade de entendimento, embarquei em uma jornada de autoconhecimento. Durante esse percurso, descobri meu propósito como Terapeuta Integrativa. Essa descoberta não apenas me trouxe clareza, mas também me proporcionou a chance de auxiliar outras pessoas a enfrentarem seus desafios e transformarem suas vidas.
+      .btn:hover {
+        background-color: #d8953a;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
 
-A cada passo, busquei ampliar meu conhecimento através de diversas práticas e ensinamentos. Esses aprendizados mudaram minha percepção sobre a vida, permitindo-me lidar com os obstáculos de uma forma mais consciente e assertiva. Com essa nova visão, comecei a conquistar a vida que sempre desejei, alinhando-me aos meus verdadeiros valores e sonhos.
+      /* Main Content */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
 
-Hoje, estou comprometida com minha evolução contínua e sinto-me chamada a convidar você a fazer o mesmo. Junte-se a mim nessa busca pelo seu próprio caminho de transformação. Juntos, podemos enfrentar desafios e criar a vida que desejamos.</p>
-        <h3>Técnicas Utilizadas:</h3>
-        <p><strong>Terapia Holística:</strong> considera o ser humano de forma integral, interligando aspectos físicos, emocionais, mentais e espirituais. Ao tratar a causa do problema, promove equilíbrio e harmonia.</p>
-        <p><strong>Terapia Quântica:</strong> baseada nos princípios da física quântica, essa abordagem conecta mente e matéria, demonstrando como a consciência pode influenciar a energia para promover a cura.</p>
-        <p><strong>Terapia Multidimensional:</strong> trabalha em diferentes níveis da consciência, abrangendo aspectos do passado, presente e espiritualidade. Auxilia no desbloqueio de traumas e no reequilíbrio energético, promovendo transformações profundas.</p>
-      </div>
-      <div class="about-image">
-        <img src="ThaisAbreu.jpeg" alt="Thais Abreu">
-      </div>
-    </div>
-  </section>
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        color: var(--cor-primaria);
+      }
 
-  <!-- Services Section -->
-  <section class="container" id="servicos">
-    <div class="section-title">
-      <h2>Serviços</h2>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597" alt="Terapia Quântica">
-        </div>
-        <div class="service-content">
-          <h3>Terapia Quântica</h3>
-          <p>Utilização dos princípios da física quântica para promover cura e equilíbrio energético, trabalhando na raiz dos desequilíbrios.</p>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" alt="Reiki Multidimensional">
-        </div>
-        <div class="service-content">
-          <h3>Reiki Multidimensional</h3>
-          <p>Técnica de cura energética que atua em múltiplas dimensões, promovendo harmonização física, emocional e espiritual.</p>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Leitura Energética">
-        </div>
-        <div class="service-content">
-          <h3>Leitura Energética</h3>
-          <p>Diagnóstico preciso dos campos energéticos para identificar bloqueios e desequilíbrios que afetam o bem-estar.</p>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-image">
-          <img src="https://images.unsplash.com/photo-1517842645767-c639042777db" alt="Reprogramação Energética">
-        </div>
-        <div class="service-content">
-          <h3>Limpeza e Reprogramação Energética</h3>
-          <p>Processo de limpeza de energias negativas e reprogramação de padrões mentais e emocionais limitantes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      .section-title h2 {
+        font-size: 2rem;
+        position: relative;
+        display: inline-block;
+      }
 
-  <!-- Contact Section -->
-  <section class="container" id="contato">
-    <div class="section-title">
-      <h2>Agende sua Sessão</h2>
-    </div>
-    <div class="contact-container">
-      <div class="contact-info">
-        <h3>Informações de Contato</h3>
-        <p><i class="fas fa-phone"></i> <a href="https://wa.me/5548991035154" target="_blank">(48) 991035154</a></p>
-        <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/tekhnaquantumterapias" target="_blank">@tekhnaquantumterapias</a></p>
-        <p><i class="fas fa-envelope"></i> <a href="mailto:tekhnaquantum@gmail.com">tekhnaquantum@gmail.com</a></p>
-        
-        <h3>Horário de Atendimento</h3>
-        <p>Segunda a Sexta: 9h às 18h</p>
-        <p>Sábado: 9h às 13h</p>
-      </div>
-      <div class="contact-form">
-        <h3>Envie uma Mensagem</h3>
-        <form>
-          <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" required>
+      .section-title h2:after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background-color: var(--cor-destaque);
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* About Section */
+      .about-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-image {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Services Section */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .service-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .service-content {
+        padding: 20px;
+      }
+
+      .service-content h3 {
+        color: var(--cor-primaria);
+        margin-top: 0;
+      }
+
+      /* Contact Section */
+      .contact-container {
+        display: flex;
+        gap: 40px;
+      }
+
+      .contact-info {
+        flex: 1;
+      }
+
+      .contact-form {
+        flex: 1;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-family: inherit;
+      }
+
+      .form-group textarea {
+        height: 120px;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--cor-primaria);
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .social-links {
+        margin: 20px 0;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .social-links a:hover {
+        color: var(--cor-destaque);
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        nav ul {
+          margin-top: 15px;
+        }
+
+        nav li {
+          margin-left: 15px;
+          margin-right: 15px;
+        }
+
+        .about-content,
+        .contact-container {
+          flex-direction: column;
+        }
+
+        .hero {
+          padding: 120px 20px 80px;
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <div class="logo-container">
+          <img src="logo.png" alt="Logo Thais Abreu" class="logo" />
+          <div class="logo-text">
+            <h1>Thais Abreu</h1>
+            <p>Terapias Holísticas</p>
           </div>
-          <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" required>
-          </div>
-          <div class="form-group">
-            <label for="telefone">Telefone</label>
-            <input type="tel" id="telefone">
-          </div>
-          <div class="form-group">
-            <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" required></textarea>
-          </div>
-          <button type="submit" class="btn">Enviar Mensagem</button>
-        </form>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="logo-container">
-        <img src="logo.png" alt="Logo Thais Abreu" class="logo">
-        <div class="logo-text">
-          <h1>Thais Abreu</h1>
-          <p>Terapias Holísticas</p>
+    <!-- Hero Section -->
+    <section class="hero" id="home"></section>
+
+    <!-- About Section -->
+    <section class="container" id="sobre">
+      <div class="section-title">
+        <h2>Sobre Mim</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Terapeuta holística com formação em Marketing e estudante de
+            Terapias Integrativas e Complementares.
+          </p>
+          <p style="text-align: justify">
+            Atuo com diversas técnicas terapêuticas que promovem o bem-estar
+            físico, emocional e mental, tratando a raiz dos problemas e
+            proporcionando resultados imediatos. Meu objetivo é conduzir cada
+            cliente em um processo de autoconhecimento e evolução.
+          </p>
+          <p style="text-align: justify">
+            Minha Jornada de Evolução: Um Novo Começo
+          </p>
+          <p style="text-align: justify">
+            Meu processo de evolução começou em um momento decisivo da minha
+            vida, quando decidi romper com um ciclo perturbado que me mantinha
+            estagnada. Esse rompimento foi mais do que uma simples mudança; foi
+            um convite à reflexão profunda. Eu percebi que era necessário adotar
+            transformações significativas e permanentes para poder me
+            reinventar.
+          </p>
+          <p style="text-align: justify">
+            Impulsionada por uma intensa necessidade de entendimento, embarquei
+            em uma jornada de autoconhecimento. Durante esse percurso, descobri
+            meu propósito como Terapeuta Integrativa. Essa descoberta não apenas
+            me trouxe clareza, mas também me proporcionou a chance de auxiliar
+            outras pessoas a enfrentarem seus desafios e transformarem suas
+            vidas.
+          </p>
+          <p style="text-align: justify">
+            A cada passo, busquei ampliar meu conhecimento através de diversas
+            práticas e ensinamentos. Esses aprendizados mudaram minha percepção
+            sobre a vida, permitindo-me lidar com os obstáculos de uma forma
+            mais consciente e assertiva. Com essa nova visão, comecei a
+            conquistar a vida que sempre desejei, alinhando-me aos meus
+            verdadeiros valores e sonhos.
+          </p>
+          <p style="text-align: justify">
+            Hoje, estou comprometida com minha evolução contínua e sinto-me
+            chamada a convidar você a fazer o mesmo. Junte-se a mim nessa busca
+            pelo seu próprio caminho de transformação. Juntos, podemos enfrentar
+            desafios e criar a vida que desejamos.
+          </p>
+          <h3>Técnicas Utilizadas:</h3>
+          <p>
+            <strong>Terapia Holística:</strong> considera o ser humano de forma
+            integral, interligando aspectos físicos, emocionais, mentais e
+            espirituais. Ao tratar a causa do problema, promove equilíbrio e
+            harmonia.
+          </p>
+          <p>
+            <strong>Terapia Quântica:</strong> baseada nos princípios da física
+            quântica, essa abordagem conecta mente e matéria, demonstrando como
+            a consciência pode influenciar a energia para promover a cura.
+          </p>
+          <p>
+            <strong>Terapia Multidimensional:</strong> trabalha em diferentes
+            níveis da consciência, abrangendo aspectos do passado, presente e
+            espiritualidade. Auxilia no desbloqueio de traumas e no reequilíbrio
+            energético, promovendo transformações profundas.
+          </p>
+        </div>
+        <div class="about-image">
+          <img src="ThaisAbreu.jpeg" alt="Thais Abreu" />
         </div>
       </div>
-      <div class="social-links">
-        <a href="https://instagram.com/tekhnaquantumterapias" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/5551933005845" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:tekhnaquantum@gmail.com"><i class="fas fa-envelope"></i></a>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container" id="servicos">
+      <div class="section-title">
+        <h2>Serviços</h2>
       </div>
-      <p>&copy; 2025 Thais Abreu Da Silva. Todos os direitos reservados.</p>
-    </div>
-  </footer>
-</body>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-image">
+            <img src="terapia_quant.jpg" alt="Reprogramação do Subconsciente" />
+          </div>
+          <div class="service-content">
+            <h3>Reprogramação do Subconsciente</h3>
+            <p>
+              <strong
+                >A Conexão Entre Física Quântica, Lei da Atração e Poder da
+                Mente.</strong
+              >
+            </p>
+            <p style="text-align: justify">
+              A técnica em questão é uma poderosa metodologia que conecta-se
+              intimamente às bases da física quântica, explorando como nossas
+              intenções e pensamentos moldam a realidade. Esta prática é
+              fundamentada na premissa de que tudo no universo é formado por
+              energia, incluindo nossos pensamentos e emoções. Ao atuar no
+              consciente para reprogramar o subconsciente, você se torna um
+              agente ativo na manifestação da vida que deseja.
+            </p>
+            <p style="text-align: justify">
+              <strong
+                >• Física Quântica e a Realidade Senão de
+                Possibilidades:</strong
+              >
+              A física quântica nos ensina que a realidade não é rigidamente
+              fixa, mas sim uma rede de possibilidades que se manifestam com
+              base na nossa observação e intenção. Isso significa que, ao focar
+              sua mente em objetivos específicos, você está, de certa forma,
+              colapsando as probabilidades em sua vida. A reprogramação do
+              subconsciente permite que você alinhe suas crenças e intenções com
+              suas aspirações, criando uma sinergia que torna sua realidade mais
+              alinhada ao que você deseja.
+            </p>
+            <p style="text-align: justify">
+              <strong>• A Lei da Atração:</strong> A lei da atração postula que
+              semelhante atrai semelhante. Quando você emite uma vibrante
+              energia positiva através de seus pensamentos e emoções, você atrai
+              experiências e pessoas que ressoam com essa frequência. Com essa
+              técnica, você é incentivado a resgatar o código genético da
+              criação, que corresponde a memórias e crenças que podem estar
+              limitando seu potencial. Esse resgate permite que você libere
+              bloqueios emocionais e energéticos, facilitando a manifestação da
+              vida que você almeja.
+            </p>
+            <p style="text-align: justify">
+              <strong>• O Poder da Mente:</strong> Nossos pensamentos têm um
+              impacto profundo em nossas vidas. A técnica enfatiza a importância
+              do autocontrole mental e emocional. Ao conscientizar-se de seus
+              pensamentos e reprogramá-los, você se empodera para tomar decisões
+              alinhadas com seus objetivos. Trata-se de despertar uma força
+              interna que impulsiona sua capacidade de criar mudanças
+              significativas. A meditação, visualização e afirmações são
+              ferramentas fundamentais para fortalecer essa prática, permitindo
+              que você se conecte com o seu eu interior e ative seu potencial.
+            </p>
+            <p style="text-align: justify">
+              Essa técnica é um convite para que você se torne um co-criador da
+              sua realidade. Ao integrar os princípios da física quântica, da
+              lei da atração e do poder da mente, você desperta um potencial
+              interno que pode transformar sua vida. A chave está em reconhecer
+              que você possui a capacidade de moldar seu futuro, e essa técnica
+              oferece as ferramentas necessárias para ativar essa incrível
+              jornada.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-image">
+            <img src="terapia_holist.jpg" alt="Terapia Holística" />
+          </div>
+          <div class="service-content">
+            <h3>Terapia Holística</h3>
+            <p style="text-align: justify">
+              <strong>1. Leitura do Campo Energético</strong>
+
+              A leitura do campo energético, ou aura, é uma parte fundamental da
+              Terapia Holística. Profissionais treinados utilizam suas
+              habilidades para perceber e interpretar as energias que emanam de
+              uma pessoa. Este processo permite identificar:
+
+              <strong>• Desequilíbrios Emocionais:</strong> Emoções reprimidas
+              ou não processadas podem gerar bloqueios no fluxo de energia,
+              levando a sentimentos de estresse, ansiedade e raiva.
+            </p>
+            <p style="text-align: justify">
+              <strong>• Doenças Físicas:</strong> Muitas vezes, problemas
+              físicos são manifestações de questões emocionais ou energéticas
+              não resolvidas. A identificação dessas causas profundas é vital
+              para um tratamento eficaz.
+            </p>
+            <p style="text-align: justify">
+              <strong>2. Ferramentas de Alinhamento Energético</strong>
+
+              Após identificar os desequilíbrios, a Terapia Holística utiliza
+              diversas técnicas para restaurar o equilíbrio do campo energético.
+              Algumas dessas ferramentas incluem:
+            </p>
+            <p style="text-align: justify">
+              <strong>• Reiki:</strong> Uma técnica de imposição de mãos que
+              canaliza energia curativa, promovendo relaxamento e alívio do
+              estresse.
+            </p>
+            <p style="text-align: justify">
+              <strong>• Cristaloterapia:</strong> O uso de cristais e pedras
+              preciosas para equilibrar e harmonizar as energias corporais.
+
+              <strong>• Medicação e Respiração Consciente:</strong> Técnicas que
+              ajudam a controlar a mente e promover uma conexão mais profunda
+              com o corpo e a sua energia.
+            </p>
+            <p style="text-align: justify">
+              <strong>3.Promovendo a Cura e o Bem-Estar Integral</strong>
+
+              Ao empregar essas técnicas, a Terapia Holística busca não apenas
+              aliviar os sintomas, mas abordar as causas profundas que originam
+              os desequilíbrios. Isso resulta em: Transformação Duradoura: Ao
+              lidar com as raízes dos problemas, os indivíduos podem
+              experimentar mudanças significativas em suas vidas, trazendo um
+              novo sentido de autoconhecimento e empoderamento. Desenvolvimento
+              Pessoal: A terapia holística também pode ser uma ferramenta eficaz
+              para o crescimento pessoal, ajudando a fortalecer a resiliência
+              emocional e a clareza mental.
+            </p>
+            <p style="text-align: justify">
+              <strong>4. Considerações e Benefícios</strong>
+              A Terapia Holística favorece uma abordagem personalizável e única
+              para cada indivíduo, respeitando suas singularidades e seu próprio
+              ritmo de cura. Os benefícios podem incluir: • Redução do Estresse
+              e da Ansiedade: Promovendo estados de relaxamento profundo. •
+              Melhora da Saúde Geral: Lidando com sintomas físicos de forma
+              eficaz. • Equilíbrio Emocional: Promovendo um estado de serenidade
+              e controle emocional. A Terapia Holística representa uma abordagem
+              abrangente, que vai além do tratamento dos sintomas, buscando
+              entender e tratar a totalidade do ser humano. Com o compromisso de
+              restaurar o equilíbrio e promover o bem-estar integral, essa
+              prática se destaca como uma alternativa valiosa no caminho da
+              saúde e das transformações pessoais.
+            </p>
+            <p style="text-align: justify"></p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-image">
+            <img src="mapa_astral.jpg" alt="Astrologia" />
+          </div>
+          <div class="service-content">
+            <h3>Astrologia</h3>
+            <p style="text-align: justify">
+              A Astrologia é um sistema de crenças e tradições que sugere que a
+              posição e o movimento dos corpos celestes em relação à Terra
+              influenciam as atividades e as características humanas. Trata-se
+              de uma prática antiga que remonta a civilizações como os
+              babilônios e os egípcios, e se desenvolveu ao longo dos séculos em
+              várias culturas. A leitura e interpretação do Mapa Astral, ou
+              Carta Natal, é uma das práticas centrais na Astrologia. O Mapa
+              Astral é um diagrama que representa a posição dos planetas, do Sol
+              e da Lua no momento exato do nascimento de uma pessoa,
+              considerando a data, hora e local de nascimento.
+            </p>
+            <p style="text-align: justify">
+              <strong>Componentes do Mapa Astral:</strong>
+              • Signos do Zodíaco: Existem doze signos zodiacais que
+              correspondem às constelações pela qual o Sol parece passar ao
+              longo do ano. Cada signo tem características únicas e está
+              associado a certos traços de personalidade. • Casas Astrológicas:
+              O mapa astral é dividido em doze casas, cada uma representando
+              diferentes áreas da vida, como relacionamentos, carreira,
+              finanças, saúde, etc. A posição dos planetas nas casas ajuda a
+              entender como as influências celestes afetam essas áreas. •
+              Aspectos: As relações angulares entre os planetas (ou seja, como
+              eles se posicionam uns em relação aos outros) são chamadas de
+              aspectos. Eles podem ser harmoniosos (como trígonos e sextis) ou
+              tensos (como quadraturas e oposições) e influenciam a
+              interpretação do Mapa. • Elementos e Modalidades: Os signos são
+              classificados em quatro elementos (Fogo, Terra, Ar e Água) e em
+              três modalidades (Cardeais, Fixos e Mutáveis), que também ajudam a
+              compreender a personalidade e as tendências de ação de uma pessoa.
+            </p>
+            <p style="text-align: justify">
+              <strong>Interpretação do Mapa Astral:</strong> A interpretação do
+              Mapa Astral envolve a análise dos componentes mencionados,
+              buscando entender não apenas a personalidade e as potencialidades
+              do indivíduo, mas também os desafios e lições de vida. Um
+              astrólogo considerará as interações entre os elementos do mapa e
+              como eles se manifestam na vida real da pessoa. A Astrologia pode
+              ser usada como uma ferramenta de autoconhecimento, proporcionando
+              uma compreensão mais profunda das motivações pessoais, das
+              relações interpessoais e do desenvolvimento emocional e
+              espiritual. A Astrologia e a leitura do Mapa Astral oferecem uma
+              perspectiva rica e complexa sobre o ser humano e suas
+              experiências, promovendo reflexões sobre o propósito de vida e as
+              influências que moldam a jornada de cada um.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-image">
+            <img
+              src="Acturi.jpg"
+              alt="Mesa de Cura Arcturiana Multidimensional"
+            />
+          </div>
+          <div class="service-content">
+            <h3>Mesa de Cura Arcturiana Multidimensional</h3>
+            <p style="text-align: justify">
+              A Mesa Multidimensional é uma ferramenta que atua, com a
+              intervenção da mente humana, numa conexão com a mente
+              supra-consciente. A Mesa gera soluções para tudo, substitui
+              situações complicadas, tornando a nossa vida muito mais Fácil e
+              Simples! É possível fazer Mesa Multidimensional para pessoas de
+              qualquer idade encarnadas e desencarnadas (até 2 anos após o
+              desencarne), empresas e residências.
+            </p>
+            <p style="text-align: justify">
+              Em uma consulta é possível identificar a área de sua vida onde há
+              um bloqueio de energia e fazê-la retomar o curso natural. Durante
+              a sessão, que pode ser à distância, contanto que a pessoa tenha
+              ciência e dê seu consentimento, é feita a interpretação das
+              energias do cliente para então limpar e equilibrar o que for
+              necessário, podendo atuar em todos os campos da vida, seja
+              profissional, pessoal, afetivo ou familiar, além da saúde mental,
+              física, espiritual e energética. A Mesa Multidimensional
+              Arcturiana atua sem limite de espaço ou tempo. Isso nos permite
+              limpar heranças trazidas de vidas passadas ou de outras dimensões.
+              Utilizando um pêndulo em conjunto com um sistema que oferece 24
+              geometrias sagradas e códigos orogenéticos, além de 19 ferramentas
+              específicas da mesa, a Mesa Multidimensional ativa a energia por
+              meio de cristais especiais. Essa abordagem multidimensional
+              propicia um profundo despertar de nossa verdadeira identidade
+              superior, atuando em nossas memórias e corpos sutis. Através da
+              mesa, podemos diagnosticar e medir diversas vibrações de energia
+              presentes em tudo ao nosso redor, incluindo objetos, situações,
+              lugares e pessoas. Sua atuação abrange os níveis físico,
+              emocional, mental e espiritual, promovendo uma harmonização
+              integral.
+            </p>
+            <p style="text-align: justify">
+              Como funciona a sessão de Mesa? O terapeuta conecta-se à Mesa e
+              seus símbolos, ligando o cliente a ela. Em seguida, mensura as
+              vibrações de chakras ou outras energias físicas, mentais,
+              emocionais e espirituais. Guiado pelo pêndulo, ele seleciona
+              ferramentas da mesa para enviar ao campo vibracional do cliente,
+              ajustando questões que vão além da vontade consciente e
+              libertando-o de crenças e bloqueios emocionais que afetam áreas
+              como relacionamentos, carreira e saúde, incluindo doenças
+              psicossomáticas. A Mesa atua harmonizando o "sistema" familiar,
+              ajudando a romper padrões de doenças hereditárias e ciclos
+              negativos, promovendo transformação em todas as esferas da vida,
+              seja profissional, pessoal, afetiva, familiar ou na saúde mental,
+              física, espiritual e energética.
+            </p>
+            <p style="text-align: justify">
+              Entenda um pouco mais sobre Radiestesia e Arcturianos: Radiestesia
+              ou Radiestese (que no latim/grego significa sensibilidade à
+              radiação), é a capacidade que temos de mensurar o campo
+              vibracional da matéria. Radiestesia e Radiônica são técnicas
+              holísticas que utilizam instrumentos como o pêndulo e gráficos, no
+              diagnóstico e tratamentos de bloqueios energéticos de pessoas,
+              lugares e situações. Os Arcturianos são seres da 5ª Dimensão, que
+              possuem tecnologias avançadas de cura emocional, mental e
+              espiritual para auxilio a humanidade. A Cura Multidimensional
+              Arcturiana permite ao ser denominado humano abrir canais de
+              energia pura e curadora religando-se ao seu Eu Superior, o qual
+              vai filtrar tudo que foi feito no trabalho realizado e encaminhar
+              o processo de limpeza e resolução para estas entidades e guias.
+            </p>
+            <p style="text-align: justify">
+              É possível obter proporções exatas das influências que recebemos
+              do nosso entorno. Veja exemplos de situações que podem ser
+              tratadas: → Decisões nos negócios • Limpeza de espaços, trazendo
+              harmonia no local de trabalho; • Problemas financeiros; •
+              Problemas profissionais; → Relacionamentos • Problemas afetivos; •
+              Desequilíbrio dos chakras; • Problemas com energias nocivas
+              (obsessores, magias, inveja); • Desfaz trabalhos, encaminha
+              obsessores, sofredores. • Corte de laços kármicos e quebra de
+              contratos negativos; • Depressão e Síndrome do Pânico; • Remoção
+              de padrões de medo, culpa, vergonha e reprogramação com códigos de
+              Saúde, e Harmonia; • Aumento da Autoestima e da Autoconfiança; •
+              Elevação do padrão vibratório e do nível de energia vital; Esses
+              tratamentos visam promover uma transformação profunda na vida dos
+              indivíduos, restaurando o equilíbrio e a harmonia em diferentes
+              aspectos, permitindo que cada um atinja seu pleno potencial e viva
+              de maneira mais saudável e otimizada.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-image">
+            <img src="mesa1.jpg" alt="Mesa Radiônica da Prosperidade Divina" />
+          </div>
+          <div class="service-content">
+            <h3>Mesa Radiônica da Prosperidade Divina</h3>
+            <p style="text-align: justify">
+              Você já imaginou atravessar as barreiras que impedem sua evolução
+              e alcançar a verdadeira prosperidade em todas as áreas da sua
+              vida? A Mesa Radiônica da Prosperidade Divina é uma ferramenta
+              poderosa, canalizada com um propósito claro: alinhar sua
+              existência à abundância e à riqueza que você merece!
+            </p>
+            <p style="text-align: justify">
+              O que é a Mesa Radiônica? Esta prática espiritual integra
+              elementos de radiestesia e espiritualidade, promovendo a conexão
+              com divindades que são verdadeiros mestres da abundância. Entre as
+              entidades que fazem parte dessa egrégora luminosa, destacam-se: •
+              Ganesha: o removedor de obstáculos, que abre caminhos na sua vida.
+              • Lakshmi: deusa da riqueza e da prosperidade. • Abundantia: a
+              representante da abundância. • Arcanjos Uriel e Miguel: que trazem
+              proteção e sabedoria em sua jornada. • Mestres Ascencionados e a
+              Deusa Alexa: regentes do 10º Raio cósmico, que ajudam a elevar
+              suas vibrações.
+            </p>
+            <p style="text-align: justify">
+              Benefícios Transformadores A Mesa Radiônica da Prosperidade Divina
+              é ideal para aqueles que buscam alinhar sua vida com a
+              prosperidade em múltiplas dimensões, incluindo: • Econômica:
+              Fortaleça sua relação com o dinheiro e atrai mais recursos. •
+              Amorosa: Harmonize suas relações afetivas com energia positiva e
+              amor incondicional. • Familiar: Traga paz e prosperidade para o
+              seu lar. • Profissional: Abrir portas para novas oportunidades e
+              alinhar com uma carreira abundante. Para Quem é Indicada? Se você
+              sente que limites e crenças negativas estão bloqueando seu
+              caminho, esta mesa oferece um caminho para: • Remover Crenças
+              Limitantes: Liberte-se de pensamentos que atrasam sua
+              prosperidade. • Transmutar Karmas: Cure questões de vidas passadas
+              que influenciam sua realidade atual. • Harmonizar sua Energia
+              Pessoal: Integre-se com sua essência divina e harmonize suas
+              vibrações.
+            </p>
+            <p style="text-align: justify">
+              Como Funciona? Através de sessões de aplicação da Mesa Radiônica,
+              você pode: Acessar energias poderosas que promovem a remoção de
+              nocividades que impedem seu fluxo de prosperidade. Trabalhar
+              questões judiciais e obstáculos de forma holística. Conectar-se
+              com sua egrégora pessoal e abrir-se para infinitas possibilidades.
+              Transforme sua Vida! A Mesa Radiônica da Prosperidade Divina é
+              mais do que uma ferramenta; é uma oportunidade de transformação
+              profunda e alinhamento com a abundância universal. Permita-se
+              acessá-la e veja como sua vida pode mudar de forma surpreendente!
+              Experimente esta jornada rumo à prosperidade e descubra todo o
+              potencial que a vida tem a oferecer!
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-image">
+            <img src="runnas.jpg" alt="Runas Sagradas de Odin" />
+          </div>
+          <div class="service-content">
+            <h3>Runas Sagradas de Odin</h3>
+            <p style="text-align: justify">
+              As Runas Sagradas de Odin, conhecidas como runas, são um conjunto
+              de caracteres que pertenceram às culturas germânicas da
+              Antiguidade, especialmente entre os povos nórdicos. Seu uso
+              remonta ao século II d.C., e o alfabeto rúnico, chamado de
+              Futhark, foi desenvolvido durante esse período. A mitologia
+              nórdica nos conta que Odin, o deus da sabedoria e da guerra,
+              sacrificou-se pendurado em uma árvore por nove dias e nove noites
+              para obter conhecimento das runas, que são consideradas sagradas e
+              carregadas de poder espiritual. As runas são não apenas letras,
+              mas também símbolos que representam conceitos, forças da natureza,
+              e elementos da vida humana. Cada runa carrega significados
+              específicos e pode ser usada para a previsão, orientação, ou
+              reflexão. Os praticantes acreditam que as runas têm uma forte
+              conexão com o inconsciente, atuando como uma ponte entre a mente
+              consciente e as profundezas do ser.
+            </p>
+            <p style="text-align: justify">
+              Utilização Terapêutica das Runas • Autodescoberta e Reflexão: As
+              runas podem ser empregadas como um instrumento de
+              autoconhecimento. Ao tirar uma runa, o praticante pode refletir
+              sobre seu significado e como ele se relaciona com sua vida
+              pessoal, estimulando um processo de autoanálise e crescimento
+              pessoal. • Orientação: As runas podem servir como uma ferramenta
+              de orientação, ajudando o indivíduo a tomar decisões e a ver
+              diferentes aspectos de uma situação. A interpretação das runas
+              pode oferecer insights valiosos sobre desafios ou oportunidades. •
+              Meditação e Conexão Espiritual: Usar as runas como foco em
+              práticas de meditação pode ajudar a aprofundar a conexão com o eu
+              interior e com o mundo espiritual. A visualização das runas e sua
+              energia pode promover um estado de calma e clareza mental. •
+              Rituais e Cerimônias: As runas podem ser incorporadas em rituais
+              de cura e cerimoniais, onde seus significados são invocados para
+              apoiar processos de cura emocional, mental e espiritual. •
+              Designação de Intenções: Ao trabalhar com runas, os praticantes
+              podem designar intenções específicas, permitindo que as runas
+              ajudem a manifestá-las em suas vidas. A combinação de intenção e
+              simbolismo pode ser um poderoso catalisador para mudanças.
+            </p>
+            <p style="text-align: justify">
+              As Runas Sagradas de Odin oferecem uma rica tapeçaria de
+              significados e simbolismos que são tanto ancestrais quanto
+              contemporâneos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container" id="contato">
+      <div class="section-title">
+        <h2>Agende sua Sessão</h2>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Informações de Contato</h3>
+          <p>
+            <i class="fas fa-phone"></i>
+            <a href="https://wa.me/5548991035154" target="_blank"
+              >(48) 991035154</a
+            >
+          </p>
+          <p>
+            <i class="fab fa-instagram"></i>
+            <a
+              href="https://instagram.com/tekhnaquantumterapias"
+              target="_blank"
+              >@tekhnaquantumterapias</a
+            >
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:tekhnaquantum@gmail.com">tekhnaquantum@gmail.com</a>
+          </p>
+
+          <h3>Horário de Atendimento</h3>
+          <p>Segunda a Sexta: 9h às 18h</p>
+          <p>Sábado: 9h às 13h</p>
+        </div>
+        <div class="contact-form">
+          <h3>Envie uma Mensagem</h3>
+          <form>
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" required />
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <input type="tel" id="telefone" />
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" required></textarea>
+            </div>
+            <button type="submit" class="btn">Enviar Mensagem</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="logo-container">
+          <img src="logo.png" alt="Logo Thais Abreu" class="logo" />
+          <div class="logo-text">
+            <h1>Thais Abreu</h1>
+            <p>Terapias Holísticas</p>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://instagram.com/tekhnaquantumterapias" target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://wa.me/5551933005845" target="_blank"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+          <a href="mailto:tekhnaquantum@gmail.com"
+            ><i class="fas fa-envelope"></i
+          ></a>
+        </div>
+        <p>&copy; 2025 Thais Abreu Da Silva. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </body>
 </html>
